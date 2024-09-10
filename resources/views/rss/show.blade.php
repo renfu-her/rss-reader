@@ -58,41 +58,11 @@
             height: 100%;
             object-fit: cover;
         }
-
-        .lazy-placeholder {
-            width: 100%;
-            height: 100%;
-            background-color: #e9ecef;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #6c757d;
-            font-size: 14px;
-        }
     </style>
 @endpush
 
 @push('scripts')
     <script>
-        $(function() {
-            $('.lazy').Lazy({
-                effect: 'fadeIn',
-                effectTime: 300,
-                threshold: 0,
-                placeholder: "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==",
-                beforeLoad: function(element) {
-                    var placeholderDiv = $('<div class="lazy-placeholder">載入中...</div>');
-                    element.parent().append(placeholderDiv);
-                },
-                afterLoad: function(element) {
-                    element.parent().find('.lazy-placeholder').remove();
-                },
-                onError: function(element) {
-                    var placeholderDiv = $('<div class="lazy-placeholder">圖片載入失敗</div>');
-                    element.parent().find('.lazy-placeholder').remove();
-                    element.parent().append(placeholderDiv);
-                }
-            });
-        });
+        $("img.lazy").lazyload();
     </script>
 @endpush
