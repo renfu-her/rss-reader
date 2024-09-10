@@ -5,7 +5,7 @@
 @section('content')
     <div class="container">
         <div class="d-flex align-items-center mb-4">
-            <img src="{{ asset('favicon.png') }}" alt="RSS Feed Icon" class="rss-icon me-3">
+            <img src="{{ asset('images/rss-feed.png') }}" alt="RSS Feed Icon" class="rss-icon me-3">
             <h1 class="mb-0">{{ $channel['title'] }}</h1>
         </div>
         <p class="mb-4">{{ $channel['description'] }}</p>
