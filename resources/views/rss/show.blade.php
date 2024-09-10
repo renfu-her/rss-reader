@@ -5,7 +5,7 @@
 @section('content')
     <div class="container">
         <div class="d-flex align-items-center mb-4">
-            <img src="{{ asset('images/rss-feed.png') }}" alt="RSS Feed Icon" class="rss-icon me-3">
+            <img src="{{ asset('favicon.png') }}" alt="RSS Feed Icon" class="rss-icon me-3">
             <h1 class="mb-0">{{ $channel['title'] }}</h1>
         </div>
         <p class="mb-4">{{ $channel['description'] }}</p>
@@ -58,6 +58,17 @@
             height: 100%;
             object-fit: cover;
         }
+
+        .lazy-placeholder {
+            width: 100%;
+            height: 100%;
+            background-color: #e9ecef;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #6c757d;
+            font-size: 14px;
+        }
     </style>
 @endpush
 
@@ -67,7 +78,20 @@
             $('.lazy').Lazy({
                 effect: 'fadeIn',
                 effectTime: 300,
-                threshold: 0
+                threshold: 0,
+                placeholder: "data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==",
+                beforeLoad: function(element) {
+                    var placeholderDiv = $('<div class="lazy-placeholder">載入中...</div>');
+                    element.parent().append(placeholderDiv);
+                },
+                afterLoad: function(element) {
+                    element.parent().find('.lazy-placeholder').remove();
+                },
+                onError: function(element) {
+                    var placeholderDiv = $('<div class="lazy-placeholder">圖片載入失敗</div>');
+                    element.parent().find('.lazy-placeholder').remove();
+                    element.parent().append(placeholderDiv);
+                }
             });
         });
     </script>
