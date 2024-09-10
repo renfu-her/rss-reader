@@ -4,7 +4,10 @@
 
 @section('content')
     <div class="container">
-        <h1 class="mb-4">{{ $channel['title'] }}</h1>
+        <div class="d-flex align-items-center mb-4">
+            <img src="{{ asset('favicon.png') }}" alt="RSS Feed Icon" class="rss-icon me-3">
+            <h1 class="mb-0">{{ $channel['title'] }}</h1>
+        </div>
         <p class="mb-4">{{ $channel['description'] }}</p>
 
         <div class="row">
@@ -12,7 +15,6 @@
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100">
                         <div class="card-img-top-wrapper">
-                            <div class="placeholder-loader"></div>
                             <img src="{{ $item['imageUrl'] }}" class="card-img-top" alt="{{ $item['title'] }}">
                         </div>
                         <div class="card-body d-flex flex-column">
@@ -35,19 +37,26 @@
 @endsection
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('css/rss-reader.css') }}">
-@endpush
+    <style>
+        .rss-icon {
+            width: 32px;
+            height: 32px;
+        }
 
-@push('scripts')
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var lazyImages = document.querySelectorAll('img.card-img-top');
-            lazyImages.forEach(function(img) {
-                img.addEventListener('load', function() {
-                    this.classList.add('loaded');
-                    this.previousElementSibling.style.display = 'none';
-                });
-            });
-        });
-    </script>
+        .card-img-top-wrapper {
+            position: relative;
+            height: 250px;
+            background-color: #f8f9fa;
+            overflow: hidden;
+        }
+
+        .card-img-top {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
 @endpush
