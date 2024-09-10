@@ -47,7 +47,7 @@ class RssReaderController extends Controller
             if (isset($item->children('media', true)->content)) {
                 $imageUrl = (string)$item->children('media', true)->content->attributes()->url;
                 // 移除多余的 "http:" 前缀
-                $imageUrl = preg_replace('/^http:https?:\/\//', 'https://', $imageUrl);
+                $imageUrl = preg_replace('/^http:https?:\/\//', 'http://', $imageUrl);
             }
 
             // 如果沒有圖片，使用預設圖片
