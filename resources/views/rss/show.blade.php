@@ -5,7 +5,7 @@
 @section('content')
     <div class="container">
         <div class="d-flex align-items-center mb-4">
-            <img src="{{ asset('images/rss-feed.png') }}" alt="RSS Feed Icon" class="rss-icon me-3">
+            <img src="{{ asset('favicon.png') }}" alt="RSS Feed Icon" class="rss-icon me-3">
             <h1 class="mb-0">{{ $channel['title'] }}</h1>
         </div>
         <p class="mb-4">{{ $channel['description'] }}</p>
@@ -15,7 +15,7 @@
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100">
                         <div class="card-img-top-wrapper">
-                            <img src="{{ $item['imageUrl'] }}" class="card-img-top" alt="{{ $item['title'] }}">
+                            <img class="card-img-top lazy" data-src="{{ $item['imageUrl'] }}" alt="{{ $item['title'] }}">
                         </div>
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title">
@@ -59,4 +59,16 @@
             object-fit: cover;
         }
     </style>
+@endpush
+
+@push('scripts')
+    <script>
+        $(function() {
+            $('.lazy').Lazy({
+                effect: 'fadeIn',
+                effectTime: 300,
+                threshold: 0
+            });
+        });
+    </script>
 @endpush
