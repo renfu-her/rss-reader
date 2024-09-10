@@ -15,7 +15,11 @@
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100">
                         <div class="card-img-top-wrapper">
-                            <img class="card-img-top lazy" data-src="{{ $item['imageUrl'] }}" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt="{{ $item['title'] }}">
+                            <a href="{{ $item['link'] }}" target="_blank">
+                                <img class="card-img-top lazy" data-src="{{ $item['imageUrl'] }}"
+                                    src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                    alt="{{ $item['title'] }}">
+                            </a>
                         </div>
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title">
